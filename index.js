@@ -21,10 +21,10 @@
   bot.start(async (ctx) => {
     try {
       ctx.reply(
-        `Hi ${ctx.message.from.first_name},\n\nSend any study material link to download.`,
+        `Hi ${ctx.message.from.first_name},\n\nSend any study material link to download. "teraboxapp.com" waali link j naakhvi`,
         Markup.inlineKeyboard([
-          Markup.button.url(" Channel", "https://t.me/botcodes123"),
-          Markup.button.url("Report bug", "https://t.me/Armanidrisi_bot"),
+          Markup.button.url("Sexy Archives", "https://t.me/+tz6M9qdk5QNhMjc1"),
+          Markup.button.url("Admin", "https://t.me/Don_coreleon"),
         ]),
       );
     } catch (e) {
