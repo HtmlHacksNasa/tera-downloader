@@ -1,9 +1,21 @@
-async function main() {
+ async function main() {
   const { Telegraf, Markup } = require("telegraf");
   const { getDetails } = require("./api");
   const { sendFile } = require("./utils");
   const express = require("express");
+   
+  function extractLink(text, pattern) {
+    
+    const regex = new RegExp(pattern, 'i');
+    
+    const match = regex.exec(text);
 
+    if (match) {
+      return match[1];
+    }
+    return null;
+  }
+   
   const bot = new Telegraf(process.env.BOT_TOKEN);
 
   bot.start(async (ctx) => {
@@ -21,18 +33,23 @@ async function main() {
   });
 
   bot.on("message", async (ctx) => {
+    
     if (ctx.message && ctx.message.text) {
       const messageText = ctx.message.text;
-      if (
-        messageText.includes("terabox.com") ||
-        messageText.includes("teraboxapp.com")
+
+      const pattern = /(https:\/\/teraboxapp\.com[^\s]+)/i; // Match any http/https URL
+  
+      const extractedLink = extractLink(messageText, pattern);
+      if (extractedLink
+        // messageText.includes("terabox.com") ||
+        // messageText.includes("teraboxapp.com") 
       ) {
         //const parts = messageText.split("/");
         //const linkID = parts[parts.length - 1];
 
         // ctx.reply(linkID)
 
-        const details = await getDetails(messageText);
+        const details = await getDetails(extractedLink);
         if (details && details.direct_link) {
           try {
             ctx.reply(`Sending Files Please Wait.!!`);
