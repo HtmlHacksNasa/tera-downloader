@@ -21,9 +21,8 @@
   bot.start(async (ctx) => {
     try {
       ctx.reply(
-        `Hi ${ctx.message.from.first_name},\n\nSend any study material link to download. "teraboxapp.com" waali link j naakhvi`,
+        `Hi ${ctx.message.from.first_name},\n\nSend any study material link to download.`,
         Markup.inlineKeyboard([
-          Markup.button.url("Sexy Archives", "https://t.me/+tz6M9qdk5QNhMjc1"),
           Markup.button.url("Admin", "https://t.me/Don_coreleon"),
         ]),
       );
@@ -37,7 +36,9 @@
     if (ctx.message && ctx.message.text) {
       const messageText = ctx.message.text;
 
-      const pattern = /(https:\/\/teraboxapp\.com[^\s]+)/i; // Match any http/https URL
+      // const pattern = /(https:\/\/teraboxapp\.com[^\s]+)/i; // Match any http/https URL
+       const pattern = /(https:\/\/(?:teraboxapp\.com|teraboxlink\.com|terafileshare\.com|www\.1024tera\.com)\/([^\s/]+))/i;
+
   
       const extractedLink = extractLink(messageText, pattern);
       if (extractedLink
