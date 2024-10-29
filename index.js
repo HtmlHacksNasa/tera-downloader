@@ -16,7 +16,7 @@
     return null;
   }
    
-  const bot = new Telegraf("7829890628:AAGpREwFxZyLVnWxaS2rUkrc5prqy8ktNcc");
+  const bot = new Telegraf(process.env.BOT_TOKEN);
 
   bot.start(async (ctx) => {
     try {
