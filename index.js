@@ -49,8 +49,8 @@ bot.on('message', async (ctx) => {
   }
 });
 
-// Set the bot API endpoint
-app.use(bot.createWebhook({ domain: process.env.WEBHOOK_URL }));
+// Set the bot API endpoint as middleware
+app.use(bot.webhookCallback('/webhook'));
 
 // Start the server
 const PORT = process.env.PORT || 3000;
